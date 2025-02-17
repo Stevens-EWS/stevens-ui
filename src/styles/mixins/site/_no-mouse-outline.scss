@@ -1,0 +1,9 @@
+@mixin no-mouse-outline {
+  html[data-whatinput='mouse'] &,
+  html[data-whatinput='touch'] & {
+    &:focus-within,
+    &:focus-within {
+      outline: 0;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@import '../../styles/_styles';
+
+.cc--basic-hero {
+  @include component-spacer;
+  background: $color-light-gray;
+
+  .c--basic-hero {
+    @include triangle-decor;
+    @include padding(rem(70) cols(3) rem(35));
+
+    @include mq($bp768) {
+      @include padding(rem(115) cols(4) rem(100));
+    }
+
+    @include mq($bp1024) {
+      @include padding(null cols(6));
+    }
+  }
+
+  .f--page-title {
+    @include margin(null null rem(20));
+
+    @include mq($bp768) {
+      @include margin(null null rem(22));
+    }
+
+    h1 {
+      @extend %font-saira-ec-regular;
+      @include font-size(42, 36);
+      color: $color-black;
+      text-align: center;
+      text-transform: uppercase;
+
+      @include mq($bp768) {
+        @include font-size(72, 60);
+      }
+    }
+  }
+}

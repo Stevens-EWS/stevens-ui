@@ -1,0 +1,7 @@
+@mixin component-spacer {
+  @include margin(null null rem(40));
+
+  @include mq($bp768) {
+    @include margin(null null rem(60));
+  }
+}

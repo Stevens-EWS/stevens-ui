@@ -1,0 +1,36 @@
+@mixin triangle-decor {
+  position: relative;
+
+  &::before,
+  &::after {
+    @include margin(null null rem(-1));
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    border-top: rem(27) solid transparent;
+    border-bottom: 0 solid transparent;
+    content: '';
+    z-index: 5;
+
+    @include mq($bp768) {
+      border-top-width: rem(64);
+    }
+
+    @include mq($bp1024) {
+      border-top-width: rem(100);
+    }
+  }
+
+  &::before {
+    left: 0;
+    border-left: 51vw solid $color-white;
+
+  }
+
+  &::after {
+    right: 0;
+    border-right: 51vw solid $color-white;
+  }
+}

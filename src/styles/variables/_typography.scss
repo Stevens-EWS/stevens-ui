@@ -1,0 +1,97 @@
+@font-face {
+  font-family: 'Saira Extra Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+  url('/src/styles/fonts/saira-extra-condensed-v11-latin-regular.woff2') format('woff2'),
+  url('/src/styles/fonts/saira-extra-condensed-v11-latin-regular.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Saira Extra Condensed';
+  font-style: normal;
+  font-weight: 700;
+  src: local(''),
+  url('/src/styles/fonts/saira-extra-condensed-v11-latin-700.woff2') format('woff2'),
+  url('/src/styles/fonts/saira-extra-condensed-v11-latin-700.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bitter';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+  url('/src/styles/fonts/bitter-v28-latin-regular.woff2') format('woff2'),
+  url('/src/styles/fonts/bitter-v28-latin-regular.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bitter';
+  font-style: italic;
+  font-weight: 400;
+  src: local(''),
+  url('/src/styles/fonts/bitter-v28-latin-italic.woff2') format('woff2'),
+  url('/src/styles/fonts/bitter-v28-latin-italic.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bitter';
+  font-style: normal;
+  font-weight: 700;
+  src: local(''),
+  url('/src/styles/fonts/bitter-v28-latin-700.woff2') format('woff2'),
+  url('/src/styles/fonts/bitter-v28-latin-700.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bitter';
+  font-style: italic;
+  font-weight: 700;
+  src: local(''),
+  url('/src/styles/fonts/bitter-v28-latin-700italic.woff2') format('woff2'),
+  url('/src/styles/fonts/bitter-v28-latin-700italic.woff') format('woff');
+  font-display: swap;
+}
+
+// Bitter
+%font-bitter-regular {
+  font-family: 'Bitter', serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+%font-bitter-regular-italic {
+  font-family: 'Bitter', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+%font-bitter-bold {
+  font-family: 'Bitter', serif;
+  font-style: normal;
+  font-weight: 700;
+}
+
+%font-bitter-bold-italict {
+  font-family: 'Bitter', serif;
+  font-style: italic;
+  font-weight: 700;
+}
+
+// Saira Extra Condensed
+%font-saira-ec-regular {
+  font-family: 'Saira Extra Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+%font-saira-ec-bold {
+  font-family: 'Saira Extra Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+}

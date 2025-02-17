@@ -1,0 +1,116 @@
+@mixin button ($red: false, $blue: false, $blackText: false) {
+  @extend %font-saira-ec-bold;
+  @include font-size(18, 18);
+  @include padding(rem(10) rem(32));
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+  min-height: rem(60);
+  letter-spacing: rem(1);
+  border-radius: 0;
+  color: $color-white;
+  background-color: transparent;
+  text-transform: uppercase;
+  transition: background-color $transition-duration-fast $transition-easing-default;
+  appearance: none;
+  outline-offset: 0;
+
+  &::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: rem(3) solid $color-gold;
+    transition: border-width $transition-duration-fast $transition-easing-default;
+    content: '';
+  }
+
+  &::before {
+    position: absolute;
+    width: calc(100% - #{rem(12)});
+    height: calc(100% - #{rem(12)});
+    top: rem(6);
+    left: rem(6);
+    border: rem(2) solid $color-white;
+    content: '';
+  }
+
+  @include mq($bp768) {
+    width: auto;
+    min-width: rem(200);
+  }
+
+  &:focus {
+    background-color: transparent;
+    color: $color-white;
+    border-color: $color-gold;
+    text-decoration: none;
+
+    &::after {
+      transition: border-width $transition-duration-fast $transition-easing-default;
+      border-width: rem(8);
+    }
+  }
+
+  @include hover {
+    background-color: transparent;
+    color: $color-white;
+    text-decoration: none;
+    border-width: rem(8);
+
+    &::after {
+      transition: border-width $transition-duration-fast $transition-easing-default;
+      border-width: rem(8);
+    }
+  }
+
+
+  @if $red {
+    color: $color-stevens-red;
+
+    &::after {
+      border-color: $color-stevens-red;
+    }
+
+    &::before {
+      border-color: $color-stevens-gray;
+    }
+
+    &:focus {
+      color: $color-stevens-red;
+    }
+
+    @include hover {
+      color: $color-stevens-red;
+    }
+  }
+
+  @if $blue {
+    color: $color-white;
+
+    &::after {
+      border-color: $color-medium-blue;
+    }
+
+    &::before {
+      border-color: $color-white;
+    }
+  }
+
+  @if $blackText {
+    color: $color-black;
+
+    &:focus {
+      color: $color-black
+    }
+
+    @include hover {
+      color: $color-black;
+    }
+  }
+}

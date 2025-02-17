@@ -1,0 +1,146 @@
+@import '../../styles/_styles';
+
+.cc--accordions {
+  .c--accordions {
+    .f--section-title {
+      h2 {
+        @extend %font-saira-ec-bold;
+        @include font-size(24, 30);
+        color: $color-stevens-red;
+
+        @include mq($bp768) {
+          @include font-size(30, 30);
+        }
+      }
+    }
+
+    :global .f--description {
+      @include margin(rem(10) null null);
+      
+      @include mq($bp1024) {
+        @include margin(rem(20) null null);
+      }
+
+      ul,
+      ol {
+        margin-bottom: 0;
+
+        li {
+          &,
+          p,
+          a {
+            @include font-size(14, 22);
+            position: relative;
+
+            @include mq($bp768) {
+              @include font-size(16, 28);
+            }
+          }
+
+          p {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    .accordion-container {
+      @include margin(rem(30) null null);
+
+      @include mq($bp1024) {
+        @include margin(rem(60) null null);
+      }
+
+      :global .accordion__item {
+        border-top: rem(1) solid $color-black;
+
+        &:last-child {
+          border-bottom: rem(1) solid $color-black;
+        }
+      }
+
+      :global .accordion__button {
+        @extend %font-saira-ec-regular;
+        @include padding(rem(20) rem(30) rem(20) null);
+        @include font-size(24, 30);
+        @include no-mouse-outline;
+        position: relative;
+        color: $color-dark-gray;
+        cursor: pointer;
+
+        @include mq($bp1024) {
+          @include padding(rem(30) null);
+          @include font-size(30, 30);
+        }
+
+        svg {
+          @include centered('y');
+          right: 0;
+        }
+
+        &[aria-expanded='true'] {
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      :global .accordion__panel {
+        .accordion-content {
+          @include padding(null null rem(30));
+          font-family: 'Bitter', serif;
+          font-style: normal;
+          font-weight: 400;
+          overflow: hidden;
+
+          ul,
+          ol {
+            margin-bottom: 0;
+
+            li {
+              &,
+              p,
+              a {
+                @include font-size(14, 22);
+                position: relative;
+
+                @include mq($bp768) {
+                  @include font-size(16, 28);
+                }
+              }
+
+              p {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .cta-container {
+      @include margin(rem(30) null null);
+
+      a {
+        @include button($red: true);
+      }
+    }
+  }
+
+  :global(.chapter-page) & {
+    @include component-spacer;
+  }
+
+  :global(.page-basic) &, 
+  :global(.right-nav) & {
+    @include component-spacer;
+
+    .c--accordions {
+      @include padding(null cols(3));
+
+      @include mq($bp1024) {
+        @include padding(null cols(9));
+      }
+    }
+  }
+}
