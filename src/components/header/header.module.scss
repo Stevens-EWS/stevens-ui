@@ -1,0 +1,370 @@
+@import '../../styles/_styles';
+
+.cc--header {
+  position: relative;
+  z-index: 999;
+
+  .c--header {
+    @include mq($bp1024) {
+      &:hover,
+      &:focus-within {
+        .header-bg-container {
+          &.hover.scroll {
+            top: 0;
+          }
+
+          &.hover {
+            top: rem(24);
+          }
+        }
+
+        .header-wrapper {
+          &.hover-alternate.scroll,
+          &.hover.scroll {
+            top: 0;
+
+            .logo-wrapper {
+              :global .big-logo {
+                display: block;
+              }
+
+              :global .small-logo {
+                display: none;
+              }
+            }
+          }
+
+          &.hover {
+            top: rem(24);
+
+            .logo-wrapper {
+              top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.no-preview {
+    .c--header {
+      @include mq($bp1024) {
+        &:hover,
+        &:focus-within {
+          .header-bg-container {
+            &.hover {
+              top: 0;
+            }
+          }
+
+          .header-wrapper {
+            &.hover-alternate.scroll,
+            &.hover {
+              top: 0;
+
+              .logo-wrapper {
+                top: 0;
+
+                :global .big-logo {
+                  display: block;
+                }
+
+                :global .small-logo {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .header-bg-container {
+    display: none;
+
+    @include mq($bp1024) {
+      display: block;
+      position: relative;
+      transition: top .2s ease;
+
+      &.hover-alternate.scroll,
+      &.hover {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        width: 100%;
+        transform: translateX(-50%);
+      }
+
+      &.hover.scroll,
+      &.scroll {
+        position: fixed;
+        top: rem(-60);
+        left: 50%;
+        width: 100%;
+        transform: translateX(-50%);
+      }
+
+      &::before {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 100%;
+        height: rem(60);
+        transform: translateX(-50%);
+        background: $color-dark-gray;
+        content: '';
+        z-index: -1;
+      }
+
+      &::after {
+        display: block;
+        position: absolute;
+        top: rem(60);
+        left: 50%;
+        width: 100%;
+        height: rem(60);
+        transform: translateX(-50%);
+        background: $color-stevens-red;
+        content: '';
+        z-index: -1;
+      }
+    }
+  }
+
+  .header-placeholder {
+    height: rem(50);
+
+    @include mq($bp1024) {
+      height: rem(120);
+    }
+  }
+
+  .header-wrapper {
+    position: relative;
+    z-index: 999;
+
+    &.scroll {
+      @include mq($bp1024max) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 20;
+      }
+
+      .logo-wrapper {
+        top: rem(15);
+
+        :global .big-logo {
+          display: none;
+        }
+
+        :global .small-logo {
+          display: block;
+        }
+      }
+    }
+
+    @include mq($bp1024) {
+      @include maxwidth;
+      @include padding(null cols(2));
+      transition: top .2s ease;
+
+      &.hover-alternate.scroll,
+      &.hover.scroll,
+      &.hover {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        width: 100%;
+        transform: translateX(-50%);
+      }
+
+      &.scroll {
+        position: fixed;
+        top: rem(-60);
+        left: 50%;
+        width: 100%;
+        transform: translateX(-50%);
+
+        .logo-wrapper {
+          top: rem(74);
+
+          :global .big-logo {
+            display: none;
+          }
+
+          :global .small-logo {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  .logo-wrapper {
+    position: absolute;
+    top: 0;
+    left: rem(20);
+    width: rem(80);
+    text-align: center;
+    z-index: 11;
+
+    @include mq($bp1024) {
+      left: cols(2, 48);
+      width: rem(175);
+    }
+
+    a {
+      display: inline-block;
+    }
+
+    svg {
+      height: auto;
+    }
+
+    :global .big-logo {
+      width: rem(80);
+
+      @include mq($bp1024) {
+        width: rem(175);
+      }
+    }
+
+    :global .small-logo {
+      display: none;
+      width: rem(80);
+
+      @include mq($bp1024) {
+        width: rem(120);
+      }
+    }
+  }
+
+  .mobile-nav {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: rem(50);
+    background: $color-stevens-red;
+
+    @include mq($bp1024) {
+      display: none;
+    }
+
+    .hamburger-button {
+      width: rem(50);
+      height: rem(50);
+      background: $color-stevens-red;
+
+      .close-icon {
+        display: none;
+      }
+
+      &.open {
+        .hamburger-icon {
+          display: none;
+        }
+
+        .close-icon {
+          display: inline-block;
+        }
+      }
+    }
+
+    .search-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: rem(50);
+      height: rem(50);
+    }
+  }
+
+  .nav-wrapper {
+    @include mq($bp1024max) {
+      display: none;
+
+      &.show-nav {
+        display: flex;
+        position: absolute;
+        top: rem(49);
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        overflow-y: scroll;
+      }
+    }
+
+    @include mq($bp1024) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-nav-wrapper {
+      @include padding(rem(10) cols(3) rem(60));
+      display: none;
+      position: relative;
+      background: $color-dark-gray;
+
+      @include mq($bp768) {
+        @include padding(null cols(4));
+      }
+
+      @include mq($bp1024) {
+        @include padding(0 0 0 cols(7, 44));
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: rem(60);
+      }
+
+      .search-button {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: rem(50);
+        height: rem(50);
+
+        @include mq($bp1024) {
+          display: flex;
+        }
+      }
+    }
+
+    .mobile-utility-nav {
+      @include padding(rem(10) cols(3) rem(150));
+      position: relative;
+      background: $color-dark-gray;
+
+      @include mq($bp768) {
+        @include padding(null cols(4));
+      }
+
+      @include mq($bp1024) {
+        display: none;
+      }
+    }
+
+    .main-nav-wrapper {
+      @include padding(rem(55) cols(3) rem(20));
+      background: $color-stevens-red;
+
+      @include mq($bp768) {
+        @include padding(rem(60) cols(4) rem(20));
+      }
+
+      @include mq($bp1024) {
+        @include padding(0 0 0 cols(7, 44));
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: flex-end;
+        height: rem(60);
+      }
+    }
+  }
+}

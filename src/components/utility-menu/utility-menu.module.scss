@@ -1,0 +1,106 @@
+@import '../../styles/_styles';
+
+.utility-nav {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include mq($bp1024) {
+    flex-direction: row;
+  }
+
+  .menu-item {
+    @extend %font-bitter-regular;
+    @include font-size(14, 22);
+    @include padding(rem(20) null);
+    position: relative;
+    color: $color-white;
+
+    @include mq($bp1024max) {
+      border-bottom: rem(1) solid rgba($color-white, .3);
+    }
+
+    @include mq($bp1024) {
+      @include padding(rem(20) rem(12));
+    }
+
+    @include mq($bp1200) {
+      @include padding(null rem(20));
+    }
+
+    .link-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      button,
+      a {
+        @extend %font-bitter-regular;
+        @include font-size(14, 22);
+        color: $color-white;
+        background-color: transparent;
+        border: 0;
+        text-decoration: none;
+
+        @include hover {
+          text-decoration: underline;
+        }
+      }
+
+      .submenu-arrow {
+        @include mq($bp1024) {
+          @include margin(null null null rem(10));
+        }
+
+        &.open {
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+
+        svg {
+          width: rem(15);
+          height: auto;
+
+          @include mq($bp1024) {
+            width: rem(11);
+          }
+        }
+      }
+    }
+
+    .submenu-wrapper {
+      display: none;
+
+      &.show-nav {
+        @include padding(rem(10) null rem(5));
+        display: block;
+      }
+
+      @include mq($bp1024) {
+        position: absolute;
+        top: rem(50);
+        left: 0;
+        min-width: rem(200);
+        background: $color-stevens-gray;
+        z-index: 12;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+
+        @include mq($bp1024) {
+          @include padding(rem(15) null);
+        }
+
+        .menu-item {
+          @include padding(rem(5) null);
+          border: 0;
+        }
+      }
+    }
+  }
+}

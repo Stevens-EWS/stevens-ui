@@ -1,0 +1,348 @@
+@import '../../styles/_styles';
+
+.main-nav {
+  @include no-bullet;
+  display: flex;
+  flex-direction: column;
+
+  @include mq($bp1024) {
+    flex-direction: row;
+  }
+
+  > .menu-item {
+    @include mq($bp1024max) {
+      border-bottom: rem(1) solid rgba($color-white, .3);
+    }
+
+    @include mq($bp1024) {
+      @include margin(null null null rem(50));
+      @include padding(rem(4) null null null);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: rem(60);
+      color: $color-white;
+
+      &::after {
+        display: block;
+        position: relative;
+        bottom: rem(-18);
+        width: 100%;
+        border-bottom: rem(4) solid transparent;
+        content: '';
+        z-index: 11;
+      }
+
+      &.hover {
+        &::after {
+          border-bottom-color: $color-white;
+        }
+
+        > .submenu-wrapper {
+          display: block;
+          min-height: rem(410);
+        }
+      }
+
+      html[data-whatinput='keyboard'] &,
+      html[data-whatinput='touch'] & {
+        &:focus-within {
+          > .submenu-wrapper {
+            display: block;
+          }
+        }
+      }
+    }
+
+    .link-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      button,
+      a {
+        @extend %font-saira-ec-bold;
+        @include font-size(30, 22);
+        @include padding(rem(20) null);
+        display: flex;
+        justify-content: space-between;
+        color: $color-white;
+        background-color: transparent;
+        border: 0;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        @include mq($bp1024max) {
+          &.submenu-arrow-touch {
+            display: none;
+          }
+        }
+
+        @include mq($bp1024) {
+          @include padding(0 null);
+          @include font-size(24, 24);
+        }
+      }
+
+      svg {
+        display: none;
+        cursor: pointer;
+      }
+
+      .submenu-arrow {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        width: rem(40);
+        height: rem(40);
+
+        @include mq($bp1024) {
+          display: none;
+        }
+
+        &::before,
+        &::after {
+          @include centered;
+          display: inline-block;
+          width: rem(21);
+          height: rem(21);
+          content: '';
+        }
+
+        &::before {
+          border-radius: 50%;
+          background-color: rgba($color-black, .3);
+        }
+
+        &::after {
+          background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTFweCIgaGVpZ2h0PSIxMHB4IiB2aWV3Qm94PSIwIDAgMTEgMTAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8dGl0bGU+Q29tYmluZWQgU2hhcGU8L3RpdGxlPgogICAgPGcgaWQ9IvCflqUtVmlzdWFsLURlc2lnbiIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9IlQwMS1Ib21lcGFnZS03NjgtTmF2LU9wZW4iIHRyYW5zZm9ybT0idHJhbnNsYXRlKC02ODguMDAwMDAwLCAtMTI2LjAwMDAwMCkiIGZpbGw9IiNFNEU1RTYiPgogICAgICAgICAgICA8ZyBpZD0iTWFpbi1OYXYiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLCA1MC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJQbHVzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2ODMuMDAwMDAwLCA3MS4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTEsNSBMMTEsOS40OTkgTDE1LjUsOS41IEwxNS41LDEwLjUgTDExLDEwLjQ5OSBMMTEsMTUgTDEwLDE1IEwxMCwxMC40OTkgTDUuNSwxMC41IEw1LjUsOS41IEwxMCw5LjQ5OSBMMTAsNSBMMTEsNSBaIiBpZD0iQ29tYmluZWQtU2hhcGUiPjwvcGF0aD4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+');
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+
+        &.open {
+          &::after {
+            width: rem(10);
+            height: auto;
+            border-bottom: rem(1) solid $color-white;
+          }
+        }
+      }
+    }
+
+    .submenu-wrapper {
+      display: none;
+
+      @include mq($bp1024max) {
+        &.show-nav {
+          display: block;
+        }
+      }
+
+      @include mq($bp1024) {
+        @include padding(rem(36) null);
+        position: absolute;
+        top: rem(60);
+        left: 50%;
+        width: 100vw;
+        transform: translateX(-50%);
+        background: $color-stevens-red;
+        z-index: 10;
+      }
+
+      .inner-wrapper {
+        @include mq($bp1024) {
+          @include maxwidth;
+          @include padding(null cols(2) null cols(13));
+          display: flex;
+        }
+      }
+
+      .text-wrapper {
+        @include margin(null cols(2, 33) null null);
+        display: none;
+        flex-direction: column;
+        width: cols(9, 33);
+
+        @include mq($bp1024) {
+          display: flex;
+        }
+
+        h3 {
+          @extend %font-saira-ec-regular;
+          @include font-size(36, 36);
+          @include margin(null null rem(30));
+          text-transform: none;
+        }
+
+        .f--description {
+          @extend %font-bitter-regular;
+          @include font-size(16, 26);
+        }
+      }
+
+      .main-nav {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+
+        .menu-item {
+          @include padding(rem(20) rem(40) rem(28) 0);
+          flex-direction: row;
+          justify-content: flex-start;
+          height: auto;
+
+          @include mq($bp1024max) {
+            padding: 0;
+            border-bottom: 0;
+          }
+
+          @include mq($bp1024) {
+            @include padding(rem(10) null rem(13));
+
+            &::after {
+              display: none;
+            }
+
+            &.hover > .submenu-wrapper {
+              display: block;
+              min-height: auto;
+            }
+
+            .link-wrapper {
+              .submenu-arrow-touch {
+                display: none;
+              }
+            }
+
+            html[data-whatinput='touch'] & {
+              .link-wrapper {
+                > svg {
+                  display: none;
+                }
+
+                .submenu-arrow-touch {
+                  display: flex;
+                  position: relative;
+                  align-items: center;
+                  justify-content: center;
+                  width: rem(40);
+                  height: rem(40);
+
+                  &.open {
+                    &::after {
+                      width: rem(10);
+                      height: auto;
+                      border-bottom: rem(1) solid $color-white;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          button,
+          a {
+            @extend %font-saira-ec-regular;
+            @include font-size(24, 22);
+            // @include padding(rem(10) null rem(13));
+            text-transform: none;
+
+            @include mq($bp1024) {
+              @include font-size(24, 24);
+
+              @include hover {
+                text-decoration: underline;
+              }
+            }
+          }
+
+          svg {
+            @include margin(null null null rem(15));
+            display: none;
+
+            @include mq($bp1024) {
+              display: inline-block;
+            }
+          }
+
+          .submenu-arrow {
+            &::after {
+              display: inline-block;
+              width: rem(21);
+              height: rem(21);
+              border-radius: 0;
+              background-color: transparent;
+              background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTFweCIgaGVpZ2h0PSIxMHB4IiB2aWV3Qm94PSIwIDAgMTEgMTAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8dGl0bGU+Q29tYmluZWQgU2hhcGU8L3RpdGxlPgogICAgPGcgaWQ9IvCflqUtVmlzdWFsLURlc2lnbiIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9IlQwMS1Ib21lcGFnZS03NjgtTmF2LU9wZW4iIHRyYW5zZm9ybT0idHJhbnNsYXRlKC02ODguMDAwMDAwLCAtMTI2LjAwMDAwMCkiIGZpbGw9IiNFNEU1RTYiPgogICAgICAgICAgICA8ZyBpZD0iTWFpbi1OYXYiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLCA1MC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJQbHVzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2ODMuMDAwMDAwLCA3MS4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTEsNSBMMTEsOS40OTkgTDE1LjUsOS41IEwxNS41LDEwLjUgTDExLDEwLjQ5OSBMMTEsMTUgTDEwLDE1IEwxMCwxMC40OTkgTDUuNSwxMC41IEw1LjUsOS41IEwxMCw5LjQ5OSBMMTAsNSBMMTEsNSBaIiBpZD0iQ29tYmluZWQtU2hhcGUiPjwvcGF0aD4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+');
+              background-repeat: no-repeat;
+              background-position: center;
+              content: '';
+            }
+
+            &::before {
+              display: none;
+            }
+
+            &.open {
+              &::after {
+                display: inline-block;
+                width: rem(10);
+                height: auto;
+                border-bottom: rem(1) solid $color-white;
+                border-radius: 0;
+                background-color: transparent;
+                background-image: none;
+                content: '';
+              }
+            }
+          }
+
+          .submenu-wrapper {
+            top: 0;
+            left: 100%;
+            width: auto;
+            min-width: rem(210);
+            height: 100%;
+            padding: 0;
+            transform: none;
+            background:  none;
+
+            .inner-wrapper {
+              @include padding(0 0 null);
+              display: block;
+              max-width: none;
+            }
+
+            .text-wrapper {
+              display: none;
+            }
+
+            .main-nav {
+              @include mq($bp1024max) {
+                @include margin(rem(7) null);
+              }
+
+              .menu-item {
+                @include mq($bp1024) {
+                  @include padding(0 null);
+                }
+
+                a {
+                  @extend %font-saira-ec-bold;
+                  @include font-size(18, 22);
+                  @include padding(rem(10) null rem(12) rem(10));
+
+                  @include mq($bp1024) {
+                    @include font-size(18, 20);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
