@@ -3,13 +3,13 @@
 ## Development
 
 ### Install dependencies
-### `npm install`
+#### `npm install`
 
 ### Build the library
-### `npm run rollup`
+#### `npm run rollup`
 
 ### Run Storybook locally
-### `npm run storybook`
+#### `npm run storybook`
 
 ### Build Storybook
-### `npm run build-storybook`
+#### `npm run build-storybook`
